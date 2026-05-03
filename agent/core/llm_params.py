@@ -180,6 +180,20 @@ def _resolve_llm_params(
                 params["reasoning_effort"] = reasoning_effort
         return params
 
+    if model_name.startswith("gemini/"):
+        import os
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key:
+            raise ValueError(
+                "GEMINI_API_KEY environment variable is not set. "
+                "Please set your Gemini API key to use Gemini models."
+            )
+        params = {
+            "model": model_name,
+            "api_key": api_key,
+        }
+        return params
+
     hf_model = model_name.removeprefix("huggingface/")
     api_key = _resolve_hf_router_token(session_hf_token)
     params = {

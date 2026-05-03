@@ -48,6 +48,7 @@ DEFAULT_FREE_MODEL_ID = "moonshotai/Kimi-K2.6"
 GATED_MODEL_IDS = {
     DEFAULT_CLAUDE_MODEL_ID,
     "openai/gpt-5.5",
+    "gemini/gemini-3.1-flash-lite-preview",
 }
 
 
@@ -102,6 +103,12 @@ def _available_models() -> list[dict[str, Any]]:
             "label": "DeepSeek V4 Pro",
             "provider": "huggingface",
             "tier": "free",
+        },
+        {
+            "id": "gemini/gemini-3.1-flash-lite-preview",
+            "label": "Gemini 3.1 Flash Lite",
+            "provider": "gemini",
+            "tier": "pro",
         },
     ]
     return models
